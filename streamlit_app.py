@@ -1,6 +1,8 @@
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
+# from snowflake.snowpark.context import get_active_session
+from snowflake.snowpark.functions import col
+
 
 # Write directly to the app
 st.title("Example Streamlit App :balloon:")
@@ -17,7 +19,7 @@ name_on_order = st.text_input('Movie title', 'Life of Brian')
 st.write('The name is',name_on_order)
 
 
-from snowflake.snowpark.functions import col
+# from snowflake.snowpark.functions import col
 cnx = st.connection("snowflake")
 session = cnx.session()
 my_dataframe = session.table("smoothies.public.orders").filter(col("ORDER_FILLED")==0).collect()
